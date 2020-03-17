@@ -1,0 +1,408 @@
+{
+  "name": "RPC_Temp_Monitoring_demo",
+  "type": "flogo:actions",
+  "version": "0.0.1",
+  "appModel": "1.1.0",
+  "description": "Temprature monitoring application using Flogo",
+  "imports": [
+    "github.com/TIBCOSoftware/flogo-contrib/activity/twilio",
+    "github.com/eswarabhi/colored_logger",
+    "github.com/project-flogo/contrib/activity/actreturn",
+    "github.com/project-flogo/contrib/activity/log",
+    "github.com/project-flogo/contrib/function/string"
+  ],
+  "resources": [
+    {
+      "id": "flow:rpc_temprature_monitoring_application",
+      "data": {
+        "name": "RPC_Temprature_Monitoring_Application",
+        "metadata": {
+          "input": [
+            {
+              "name": "temp",
+              "type": "integer"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "message",
+              "type": "any"
+            }
+          ]
+        },
+        "tasks": [
+          {
+            "id": "log_2",
+            "name": "Log",
+            "description": "Logs a message",
+            "activity": {
+              "ref": "#log",
+              "input": {
+                "addDetails": false,
+                "usePrint": false,
+                "message": ""
+              }
+            }
+          },
+          {
+            "id": "actreturn_3",
+            "name": "Return",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Temp is maintained which is \",$flow.temp)"
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_4",
+            "name": "Colored Logger",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "message": "=\"Temprature is in safe zone 1 which is \"+$flow.temp",
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Info"
+              }
+            }
+          },
+          {
+            "id": "actreturn_5",
+            "name": "Return (2)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Temprature is in safe range 1 which is \", $flow.temp,\"F\")"
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_6",
+            "name": "Colored Logger (2)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "message": "",
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Print"
+              }
+            }
+          },
+          {
+            "id": "actreturn_7",
+            "name": "Return (3)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": ""
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_8",
+            "name": "Colored Logger (3)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Info",
+                "message": "=\"Temprature is in safe zone 2 which is \"+$flow.temp"
+              }
+            }
+          },
+          {
+            "id": "actreturn_9",
+            "name": "Return (4)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Temprature is in safe range 2 which is \", $flow.temp,\"F\")"
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_10",
+            "name": "Colored Logger (4)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "message": "",
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Info"
+              }
+            }
+          },
+          {
+            "id": "actreturn_11",
+            "name": "Return (5)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {}
+            }
+          },
+          {
+            "id": "colored_logger_12",
+            "name": "Colored Logger (5)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Info",
+                "message": "=\"Temprature is in safe zone 3 which is \"+$flow.temp"
+              }
+            }
+          },
+          {
+            "id": "actreturn_13",
+            "name": "Return (6)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Temprature is in safe range 3 which is \", $flow.temp,\"F\")"
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_14",
+            "name": "Colored Logger (6)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "message": "",
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Print"
+              }
+            }
+          },
+          {
+            "id": "actreturn_15",
+            "name": "Return (7)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {}
+            }
+          },
+          {
+            "id": "colored_logger_16",
+            "name": "Colored Logger (7)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "flowInfo": false,
+                "addToFlow": false,
+                "logLevel": "Info",
+                "message": "=\"Temprature is in safe zone 4 which is \"+$flow.temp"
+              }
+            }
+          },
+          {
+            "id": "actreturn_18",
+            "name": "Return (8)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Temprature is in safe range 4 which is \", $flow.temp,\"F\")"
+                }
+              }
+            }
+          },
+          {
+            "id": "colored_logger_17",
+            "name": "Colored Logger (8)",
+            "description": "Activity that prints colored logs",
+            "activity": {
+              "ref": "#colored_logger",
+              "input": {
+                "flowInfo": false,
+                "addToFlow": false,
+                "message": "=\"Warning!Temprature is in danger zone which is \"+$flow.temp",
+                "logLevel": "Fatal"
+              }
+            }
+          },
+          {
+            "id": "actreturn_19",
+            "name": "Return (9)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "=string.concat(\"Warning!Temprature is in danger zone which is \", $flow.temp,\"F\")"
+                }
+              }
+            }
+          },
+          {
+            "id": "twilio_20",
+            "name": "Send SMS Via Twilio",
+            "description": "Simple Twilio Activity",
+            "activity": {
+              "ref": "#twilio",
+              "input": {
+                "from": "+12058392792",
+                "message": "Rich products Kitchen is on Fire! :P",
+                "to": "+17163229627",
+                "accountSID": "AC3ee39767e4495dd6dc6210475fa4b904",
+                "authToken": "5a8429c27daa815d96cef8393b9e0109"
+              }
+            }
+          },
+          {
+            "id": "actreturn_21",
+            "name": "Return (10)",
+            "description": "Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "message": "Message Send"
+                }
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": "log_2",
+            "to": "actreturn_3"
+          },
+          {
+            "from": "log_2",
+            "to": "colored_logger_4",
+            "type": "expression",
+            "value": "$flow.temp<=225"
+          },
+          {
+            "from": "colored_logger_4",
+            "to": "actreturn_5"
+          },
+          {
+            "from": "log_2",
+            "to": "colored_logger_6",
+            "type": "expression",
+            "value": "$flow.temp>225"
+          },
+          {
+            "from": "colored_logger_6",
+            "to": "actreturn_7"
+          },
+          {
+            "from": "colored_logger_6",
+            "to": "colored_logger_8",
+            "type": "expression",
+            "value": "$flow.temp<=250"
+          },
+          {
+            "from": "colored_logger_8",
+            "to": "actreturn_9"
+          },
+          {
+            "from": "colored_logger_6",
+            "to": "colored_logger_10",
+            "type": "expression",
+            "value": "$flow.temp>250"
+          },
+          {
+            "from": "colored_logger_10",
+            "to": "actreturn_11"
+          },
+          {
+            "from": "colored_logger_10",
+            "to": "colored_logger_12",
+            "type": "expression",
+            "value": "$flow.temp<=275"
+          },
+          {
+            "from": "colored_logger_12",
+            "to": "actreturn_13"
+          },
+          {
+            "from": "colored_logger_10",
+            "to": "colored_logger_14",
+            "type": "expression",
+            "value": "$flow.temp>275"
+          },
+          {
+            "from": "colored_logger_14",
+            "to": "actreturn_15"
+          },
+          {
+            "from": "colored_logger_14",
+            "to": "colored_logger_16",
+            "type": "expression",
+            "value": "$flow.temp<=300"
+          },
+          {
+            "from": "colored_logger_16",
+            "to": "actreturn_18"
+          },
+          {
+            "from": "colored_logger_14",
+            "to": "colored_logger_17",
+            "type": "expression",
+            "value": "$flow.temp>300"
+          },
+          {
+            "from": "colored_logger_17",
+            "to": "actreturn_19"
+          },
+          {
+            "from": "colored_logger_17",
+            "to": "twilio_20",
+            "type": "expression",
+            "value": "true"
+          },
+          {
+            "from": "twilio_20",
+            "to": "actreturn_21"
+          }
+        ]
+      }
+    }
+  ]
+}
